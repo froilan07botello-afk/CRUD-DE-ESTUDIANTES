@@ -10,4 +10,12 @@ class Estudiante extends Model
     {
         return $this->belongsTo(carrera::class);
     }
+
+    protected $fillable = 
+    [
+    'nombre',
+    'correo',
+    'carrera_id',
+    'semestre'
+    ];
 }

@@ -10,4 +10,6 @@ class Carrera extends Model
     {
         return $this->hasMany(Estudiante::class);
     }
+
+    protected $fillable = ['nombre'];
 }

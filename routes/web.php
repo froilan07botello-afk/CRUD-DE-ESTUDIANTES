@@ -10,7 +10,6 @@ Route::get('/', function () {
 
 //esta ruta es utilizada para listar 
 Route::get('/estudiantes', [EstudianteController::class, 'index'])->name('estudiantes.index');
-
 //esta ruta es utilizada crear  
 Route::get('/estudiantes/crear', [EstudianteController::class, 'create'])->name('estudiantes.create');
 
@@ -22,6 +21,6 @@ Route::get('/estudiantes/{id}/editar', [EstudianteController::class, 'edit'])->n
 
 // esta ruta la utilizo para actualizar
 Route::put('/estudiantes/{id}', [EstudianteController::class, 'update'])->name('estudiantes.update');
+//esta ruta la utilizo para eliminar 
+Route::delete('/estudiantes/{id}', [EstudianteController::class, 'destroy'])->name('estudiantes.delete');
 
-// esta ruta la utilizo para eliminar
-Route::delete('/estudiantes/{id}', [EstudianteController::class, 'destroy'])->name('estudiantes.destroy');
