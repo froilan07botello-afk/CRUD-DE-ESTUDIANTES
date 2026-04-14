@@ -3,11 +3,11 @@
 @section('content')
 
 <div class="flex justify-between mb-4">
-    <h2 class="text-xl font-semibold">Lista de Estudiantes</h2>
+    <h2 class="text-xl font-semibold">Lista de Carreras</h2>
 
-    <a href="{{ route('estudiantes.create') }}"
+    <a href="{{ route('carreras.create') }}"
     class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        + Nuevo
+        + Nueva Carrera
     </a>
 </div>
 
@@ -15,47 +15,47 @@
 
 <thead class="bg-gray-200">
 <tr>
+    <th class="p-2 text-left">ID</th>
     <th class="p-2 text-left">Nombre</th>
-    <th class="p-2 text-left">Correo</th>
-    <th class="p-2 text-left">Carrera</th>
-    <th class="p-2 text-left">Semestre</th>
     <th class="p-2 text-center">Acciones</th>
 </tr>
 </thead>
 
 <tbody>
 
-@forelse($estudiantes as $e)
+@forelse($carreras as $c)
 <tr class="border-t hover:bg-gray-50">
-    <td class="p-2">{{ $e->nombre }}</td>
-    <td class="p-2">{{ $e->correo }}</td>
-    <td class="p-2">{{ $e->carrera->nombre }}</td>
-    <td class="p-2">{{ $e->semestre }}</td>
+
+    <td class="p-2">{{ $c->id }}</td>
+    <td class="p-2">{{ $c->nombre }}</td>
 
     <td class="p-2 flex gap-2 justify-center">
 
-        <a href="{{ route('estudiantes.edit', $e->id) }}"
+        <!-- EDITAR -->
+        <a href="{{ route('carreras.edit', $c->id) }}"
         class="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500">
             Editar
         </a>
 
-        <form action="{{ route('estudiantes.delete', $e->id) }}" method="POST">
+        <!-- ELIMINAR -->
+        <form action="{{ route('carreras.delete', $c->id) }}" method="POST">
             @csrf
             @method('DELETE')
 
-            <button onclick="return confirm('¿Eliminar?')"
+            <button onclick="return confirm('¿Eliminar carrera?')"
             class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
                 Eliminar
             </button>
         </form>
 
     </td>
+
 </tr>
 
 @empty
 <tr>
-    <td colspan="5" class="text-center p-4 text-gray-500">
-        No hay estudiantes registrados
+    <td colspan="3" class="text-center p-4 text-gray-500">
+        No hay carreras registradas
     </td>
 </tr>
 @endforelse

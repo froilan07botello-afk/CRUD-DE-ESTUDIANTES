@@ -8,7 +8,7 @@ class Estudiante extends Model
 {
     public function carrera()
     {
-        return $this->belongsTo(carrera::class);
+        return $this->belongsTo(Carrera::class);
     }
 
     protected $fillable = 

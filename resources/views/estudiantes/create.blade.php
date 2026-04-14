@@ -1,46 +1,44 @@
 @extends('layouts.app')
+
 @section('content')
 
-<h2 class="text-xl mb-4">Crear Estudiante</h2>
+<h2 class="text-xl font-semibold mb-4">Nuevo Estudiante</h2>
 
-<form action="{{ route('estudiantes.store') }}" method="POST" class="bg-white p-6 rounded shadow">
+@if($errors->any())
+    <div class="bg-red-100 text-red-700 p-3 mb-4 rounded">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>• {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<form action="{{ route('estudiantes.store') }}" method="POST" class="space-y-4 " >
 
     @csrf
 
-    <!-- Nombre -->
-    <div class="mb-4">
-        <label>Nombre</label>
-        <input type="text" name="nombre"
-        class="w-full border p-2">
-    </div>
+    <input type="text" name="nombre" placeholder="Nombre"
+    value="{{ old('nombre') }}"
+    class="w-full border p-2 rounded">
 
-    <!-- Correo -->
-    <div class="mb-4">
-        <label>Correo</label>
-        <input type="email" name="correo"
-        class="w-full border p-2">
-    </div>
+    <input type="email" name="correo" placeholder="Correo"
+    value="{{ old('correo') }}"
+    class="w-full border p-2 rounded">
 
-    <!-- Carrera -->
-    <div class="mb-4">
-        <label>Carrera</label>
-        <select name="carrera_id" class="w-full border p-2">
-            @foreach($carreras as $c)
-                <option value="{{ $c->id }}">
-                    {{ $c->nombre }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+    <select name="carrera_id" class="w-full border p-2 rounded">
+        @foreach($carreras as $c)
+            <option value="{{ $c->id }}">
+                {{ $c->nombre }}
+            </option>
+        @endforeach
+    </select>
 
-    <!-- Semestre -->
-    <div class="mb-4">
-        <label>Semestre</label>
-        <input type="number" name="semestre"
-        class="w-full border p-2">
-    </div>
+    <input type="number" name="semestre" placeholder="Semestre"
+    value="{{ old('semestre') }}"
+    class="w-full border p-2 rounded">
 
-    <button class="bg-blue-500 text-white px-4 py-2">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
         Guardar
     </button>
 

@@ -1,15 +1,22 @@
 @extends('layouts.app')
-
 @section('content')
 
 <h2 class="text-xl mb-4">Editar Estudiante</h2>
-
+@if($errors->any())
+    <div class="bg-red-200 p-3 mb-4">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li> {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{ route('estudiantes.update', $estudiante->id) }}" method="POST" class="bg-white p-6 rounded shadow">
 
     @csrf
     @method('PUT')
 
-    <!-- Nombre -->
+    <!input nombre> 
     <div class="mb-4">
         <label>Nombre</label>
         <input type="text" name="nombre"
@@ -17,7 +24,7 @@
         class="w-full border p-2">
     </div>
 
-    <!-- Correo -->
+    <!input correo>
     <div class="mb-4">
         <label>Correo</label>
         <input type="email" name="correo"
@@ -25,7 +32,7 @@
         class="w-full border p-2">
     </div>
 
-    <!-- Carrera -->
+    <!input carrera>
     <div class="mb-4">
         <label>Carrera</label>
         <select name="carrera_id" class="w-full border p-2">
@@ -40,7 +47,7 @@
         </select>
     </div>
 
-    <!-- Semestre -->
+    <! Semestre->
     <div class="mb-4">
         <label>Semestre</label>
         <input type="number" name="semestre"

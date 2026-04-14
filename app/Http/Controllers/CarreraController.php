@@ -7,59 +7,55 @@ use Illuminate\Http\Request;
 
 class CarreraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //aqui solo consultamos las carreras para poder mostrar los datos en la lista
     public function index()
     {
-        //
+        $carreras = Carrera::all();
+        return view('carreras.index', compact('carreras'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    // nos sirve par crear nuevas carreras
     public function create()
     {
-        //
+        return view('carreras.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    //nos sirve para guardar carrereras
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'nombre' => 'required|min:3|unique:carreras,nombre'
+        ]);
+
+        Carrera::create($request->all());
+
+        return redirect()->route('carreras.index')
+        ->with('success', 'Carrera creada correctamente');
+    }
+    // nos sirve para poder editar carreras
+    public function edit($id)
+    {
+        $carrera = Carrera::findOrFail($id);
+        return view('carreras.edit', compact('carrera'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Carrera $carrera)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+        'nombre' => 'required|min:3|unique:carreras,nombre,' . $id
+        ]);
+
+        $carrera = Carrera::findOrFail($id);
+        $carrera->update($request->all());
+
+        return redirect()->route('carreras.index')
+        ->with('success', 'Carrera actualizada');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Carrera $carrera)
+    public function delete ($id)
     {
-        //
-    }
+        $carrera = Carrera::findOrFail($id);
+        $carrera->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Carrera $carrera)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Carrera $carrera)
-    {
-        //
+        return redirect()->route('carreras.index')
+            ->with('success', 'Carrera eliminada');
     }
 }
