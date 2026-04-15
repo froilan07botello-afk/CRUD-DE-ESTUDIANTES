@@ -32,12 +32,13 @@
     <td class="p-2">{{ $e->carrera->nombre }}</td>
     <td class="p-2">{{ $e->semestre }}</td>
 
+
     <td class="p-2 flex gap-2 justify-center">
         <a href="{{ route('estudiantes.edit', $e->id) }}"
         class="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500">
             Editar
-        </a>
-        //formulario que nos acciona el metodo de eliminar 
+        </a> 
+        <!formulario que nos acciona el metodo de eliminar>
         <form action="{{ route('estudiantes.delete', $e->id) }}" method="POST">
             @csrf
             @method('DELETE')
