@@ -7,7 +7,7 @@
     <div class="bg-red-100 text-red-700 p-3 mb-4 rounded">
         <ul>
             @foreach($errors->all() as $error)
-                <li>• {{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>

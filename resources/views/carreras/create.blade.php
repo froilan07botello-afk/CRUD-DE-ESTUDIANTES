@@ -1,17 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-
+<!vista que nos sirve para crear un nuevo estudiante>
 <h2>Crear Carrera</h2>
-@if($errors->any())
+@if($errors->any()) <!nos sirve para mostrar errores>
+
     <div class="bg-red-100 text-red-700 p-3 mb-4 rounded">
         <ul>
             @foreach($errors->all() as $error)
-                <li>• {{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
 @endif
+
 <form action="{{ route('carreras.store') }}" method="POST">
 
     @csrf

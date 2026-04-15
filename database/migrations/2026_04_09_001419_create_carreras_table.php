@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    //migracion que nos indica los campos que tiene nuestra tabla carreras y sus tipos de datos
     public function up(): void
     {
         Schema::create('carreras', function (Blueprint $table) {
@@ -18,9 +16,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('carreras');

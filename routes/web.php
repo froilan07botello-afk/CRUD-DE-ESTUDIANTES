@@ -4,13 +4,11 @@ use App\Http\Controllers\CarreraController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('estudiantes.index');
-});
+
 //rutas que para estudiantes
 
 //esta ruta es utilizada para listar 
-Route::get('/estudiantes', [EstudianteController::class, 'index'])->name('estudiantes.index');
+Route::get('/', [EstudianteController::class, 'index'])->name('estudiantes.index');
 //esta ruta es utilizada crear  
 Route::get('/estudiantes/crear', [EstudianteController::class, 'create'])->name('estudiantes.create');
 // esta ruta es utilizada para guardar

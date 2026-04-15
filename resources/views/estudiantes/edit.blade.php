@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<!vista que nos sirve para creditar un estudiante>
 
 <h2 class="text-xl mb-4">Editar Estudiante</h2>
 @if($errors->any())
@@ -47,7 +48,7 @@
         </select>
     </div>
 
-    <! Semestre->
+    <!input semestre>
     <div class="mb-4">
         <label>Semestre</label>
         <input type="number" name="semestre"

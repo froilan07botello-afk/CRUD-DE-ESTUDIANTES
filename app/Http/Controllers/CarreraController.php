@@ -23,12 +23,14 @@ class CarreraController extends Controller
     {
         $request->validate([
         'nombre' => 'required|min:3|unique:carreras,nombre'
+        ],[
+            'nombre.required'=>'¡Debes teclear el nombre de la carrera!' //personalizamos el mensaje de error
         ]);
 
         Carrera::create($request->all());
 
         return redirect()->route('carreras.index')
-        ->with('success', 'Carrera creada correctamente');
+        ->with('success', '¡Carrera creada correctamente!');
     }
     // nos sirve para poder editar carreras
     public function edit($id)
@@ -39,8 +41,11 @@ class CarreraController extends Controller
 
     public function update(Request $request, $id)
     {
+        //actualizamos los datos y a su vez personalizamos memsajes de errore para que no salgan en ingles
         $request->validate([
-        'nombre' => 'required|min:3|unique:carreras,nombre,' . $id
+        'nombre' => 'required|min:3|unique:carreras,nombre'
+        ],[
+            'nombre.required'=>'¡Debes teclear el nombre de la carrera!'
         ]);
 
         $carrera = Carrera::findOrFail($id);
@@ -52,6 +57,7 @@ class CarreraController extends Controller
 
     public function delete ($id)
     {
+        //eliminamos la carrera y mandamos un mensaje de que se realizo con exito
         $carrera = Carrera::findOrFail($id);
         $carrera->delete();
 
